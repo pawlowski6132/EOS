@@ -1,5 +1,5 @@
 from endofshift import db,login_manager
-from werkzeug.security import generate_password_hash,ccheck_password_hash
+from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
 
@@ -19,10 +19,11 @@ class User(db.Model,UserMixin):
 
     def __init__(self,email,username,password):
         self.email = email
-        self.username = usernameself.password_hash = generate_password_hash(password)
+        self.username = username
+        self.password_hash = generate_password_hash(password)
 
     def check_password(self,password):
-        return ccheck_password_hash(self.password_hash,password)
+        return check_password_hash(self.password_hash,password)
     
     def __repr__(self):
         return f"Username {self.username}"

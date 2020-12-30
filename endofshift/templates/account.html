@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 {% block content %}
     <div class="jumbotron">
@@ -9,30 +10,30 @@
     </div>
 
     <div class="container">
-        <form method="POST">
+        <form method="POST" action="" enctype="multipart/form-data">
             {{form.hidden_tag()}}
             <div class="form-group">
-                {{form.username.label(class='form-group')}}{{form.username}}
+                {{form.username.label(class='form-group')}}
+                <!-- {{form.username}} -->
                 {{form.username(class='form-control')}}
             </div>
             
             <div class="form-group">
-                {{form.email.label(class='form-group')}}{{form.email}}
-                {{form.username(class='form-control')}}
+                {{form.email.label(class='form-group')}}
+                <!-- {{form.email}} -->
+                {{form.email(class='form-control')}}
             </div>
             
             <div class="form-group">
-                {{form.picture.label(class='form-group')}}{{form.picture}}
-                {{form.username(class='form-control')}}
+                {{form.picture.label(class='form-group')}}
+                <!-- {{form.picture}} -->
+                {{form.picture(class='form-control-file')}}
             </div>
             
             <div class="form-group">
                 {{form.submit(class='btn btn-primary')}}
             </div>
             
-           
-            
-        
         </form>
 
     </div>

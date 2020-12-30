@@ -44,13 +44,13 @@ def login():
 
     return render_template('login.html',form=form)
 
-@users.route('/acccount',methods=['GET','POST'])
+@users.route('/account',methods=['GET','POST'])
 @login_required
 def account():
 
     form = UpdateUserForm()
     if form.validate_on_submit():
-        if form.picture.date:
+        if form.picture.data:
             username = current_user.username
             pic = add_profile_pic(form.picture.data,username)
             current_user.profile_image = pic
@@ -61,7 +61,7 @@ def account():
         flash('User Account Updated')
         return redirect(url_for('users.account'))
 
-    elif request.method == "Get":
+    elif request.method == "GET":
         form.username.data = current_user.username
         form.email.data = current_user.email
 
@@ -74,3 +74,4 @@ def user_posts(username):
     user = User.query.filter_by(username=username).first_or_404()
     blog_posts = BlogPost.query.filter_by(author=user).order_by(BlogPost.date.desc()).paginate(page=page,per_page=5)
     return render_template('user_blog_post.html',blog_posts=blog_posts,user=user)
+
