@@ -40,7 +40,7 @@ class BlogPost(db.Model):
 
     def __init__(self,title,text,user_id):
         self.title = title
-        self.text - text
+        self.text = text
         self.user_id = user_id
 
     def __repr__(self):
